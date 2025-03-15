@@ -6,18 +6,30 @@ on:
       - main  # Runs on every push to the main branch
 
 jobs:
-  deploy-frontend:
+ name: Deploy Website and Backend
+
+on:
+  push:
+    branches:
+      - main  # Runs on push to main branch
+
+jobs:
+   deploy-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Verify Directory Exists
+        run: ls -la Retro-Games-Website/ || echo "Directory not found"
+
       - name: Deploy All Games and Main Site to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: Retro-Games-Website/Retro Games Website  # Change this if needed
-  
+          folder: Retro-Games-Website/Retro\ Games\ Website
+          clean: true  # Ensures it deletes old files before copying new ones
+
   deploy-backend:
     runs-on: ubuntu-latest
     steps:
