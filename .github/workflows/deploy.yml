@@ -1,0 +1,41 @@
+name: Deploy Website and Backend
+
+on:
+  push:
+    branches:
+      - main  # Runs on every push to the main branch
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js (Optional, only if using a build process)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Build Frontend (If Needed)
+        run: |
+          npm install || echo "No package.json, skipping build"
+
+      - name: Deploy All Games and Main Site to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: Retro Games Website  # This contains index.html and all game folders (Minesweeper, Tetris, etc.)
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy Pong Backend to Render (or other service)
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -X POST "https://api.render.com/deploy/some-endpoint" \
+          -H "Authorization: Bearer $RENDER_API_KEY"
