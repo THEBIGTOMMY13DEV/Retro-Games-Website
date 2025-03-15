@@ -12,21 +12,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js (Optional, only if using a build process)
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Build Frontend (If Needed)
-        run: |
-          npm install || echo "No package.json, skipping build"
-
       - name: Deploy All Games and Main Site to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: Retro Games Website  # This contains index.html and all game folders (Minesweeper, Tetris, etc.)
-
+          folder: Retro-Games-Website/Retro Games Website  # Change this if needed
+  
   deploy-backend:
     runs-on: ubuntu-latest
     steps:
