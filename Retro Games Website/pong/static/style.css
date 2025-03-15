@@ -1,0 +1,317 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    width: 10vw;
+}
+
+#my-canvas {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 600px;
+    height: 300px;
+    background-color: #EEEEEE;
+}
+
+canvas {
+    margin: 0;
+    padding: 0;
+}
+
+/* Update the start button styles */
+.start-button {
+    display: none;
+    width: 200px;
+    text-decoration: none;
+    opacity: 0;
+    margin: 20px auto;
+}
+
+.start-button h1 {
+    margin: 0;
+}
+
+/* Change underline color to red when button is being pressed */
+.start-button:active {
+    text-decoration-color: crimson;
+}
+
+.reset-button h1 {
+    margin: 0;
+}
+
+.reset-button {
+    display: none;
+    width: 200px;
+    margin: 20px auto;
+    text-decoration: none;
+    flex-direction: column;
+}
+
+.start-button h1,
+.reset-button h1 {
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    width: 200px;
+    margin: 0;
+    padding: 15px 0;
+    border-radius: 5px;
+}
+
+.start-button, .reset-button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.game-over-screen {
+    display: none;
+    margin: 0 auto;
+    width: auto;
+    height: 60vh;
+}
+
+.text-container {
+    display: none;
+}
+
+#game-over-music {
+    display: none;
+}
+
+/* Update menu container styles */
+.menu-container {
+    position: relative;
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-container h2 {
+    margin: 10px 0;
+}
+
+.menu-container button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row; /* Changed from column to row */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 20px; /* Space between buttons */
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Update difficulty section styles */
+.difficulty-section {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.difficulty-button {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0; /* Start with 0 opacity */
+    width: 200px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.difficulty-button.fade-in {
+    opacity: 1;
+    display: block !important;
+}
+
+.difficulty-title {
+    margin-top: 20px;
+}
+
+.game-mode-button, .difficulty-button {
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin: 0; /* Remove vertical margins */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 200px;  /* Fixed width for consistent sizing */
+}
+
+.game-mode-button:hover, .difficulty-button:hover {
+    background-color: #666;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Add these new animations */
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+    display: block !important;  /* Force display during animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.score-display {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+/* Update the controls container styles */
+.controls-container {
+    display: none;  /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 40px;
+    opacity: 0;  /* Start with 0 opacity */
+    transition: opacity 0.5s ease;  /* Smooth transition for fade */
+}
+
+.control-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-text {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Only set display: flex on desktop, but keep opacity 0 until game starts */
+@media (min-width: 768px) {
+    .controls-container {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .controls-container {
+        display: none !important;
+    }
+}
+
+/* Add this class for fading in controls */
+.controls-visible {
+    opacity: 1;
+}
+
+/* Update mobile styles */
+@media (max-width: 767px) {
+    .game-container {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        aspect-ratio: 2/1;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .controls-container {
+        display: none;
+        text-align: center;
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+
+    .control-section {
+        justify-content: center;
+    }
+
+    .control-text {
+        font-size: 14px;
+    }
+
+    /* Prevent text selection during touch events */
+    * {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+}
+
+/* Add touch area indicators for mobile */
+.touch-area {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+}
+
+.touch-area.left {
+    left: 0;
+}
+
+.touch-area.right {
+    right: 0;
+}
+
+@media (max-width: 767px) {
+    .touch-area {
+        display: block;
+    }
+}

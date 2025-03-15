@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pong Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="menu-container">
+        <h2 id="StartGameText">Select Game Mode</h2>
+        <div class="button-container">
+            <button class="game-mode-button" data-mode="pvp">Player vs Player</button>
+            <button class="game-mode-button" data-mode="pve">Player vs Bot</button>
+        </div>
+        <div class="difficulty-section">
+            <h2 class="difficulty-title">Select Difficulty</h2>
+            <div class="button-container">
+                <button class="difficulty-button" data-difficulty="easy">Easy</button>
+                <button class="difficulty-button" data-difficulty="medium">Medium</button>
+                <button class="difficulty-button" data-difficulty="hard">Hard</button>
+            </div>
+        </div>
+        <a class="start-button" href="#"><h1 id="start-button-text">Start Game</h1></a>
+    </div>
+    
+    <a class="reset-button" href="#"><h1>Reset</h1></a>
+    
+    <div class="game-container"></div>
+    <img class="game-over-screen" src="{{ url_for('static', filename='media/game-over-screen.png') }}">
+    
+    <div class="controls-container">
+        <div class="control-section">
+            <p class="control-text">Left Player: W & S</p>
+        </div>
+        <div class="control-section">
+            <p class="control-text">Right Player: ↑ & ↓</p>
+        </div>
+    </div>
+    <audio id="game-over-music">
+        <source src="{{ url_for('static', filename='media/sad-trombone-mlg.mp3') }}" type="audio/mpeg">
+    </audio>
+    <audio id="game-won-sound">
+        <source src="{{ url_for('static', filename='media/victory.mp3') }}" type="audio/mpeg">
+    </audio>
+    <script src="{{ url_for('static', filename='pongTest.js') }}"></script>
+    <!-- Add touch areas for mobile -->
+    <div class="touch-area left"></div>
+    <div class="touch-area right"></div>
+</body>
+</html>

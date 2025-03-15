@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Minesweeper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="mine-count">💣 <span id="mine-count">0</span></div>
+            <button id="new-game-btn">New Game</button>
+            <div class="timer">⏱️ <span id="timer">0</span></div>
+        </div>
+        <div class="difficulty">
+            <button data-difficulty="easy">Easy</button>
+            <button data-difficulty="medium">Medium</button>
+            <button data-difficulty="hard">Hard</button>
+        </div>
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <!-- Add this game over overlay -->
+    <div class="game-over-overlay" id="gameOverOverlay">
+        <div class="game-over-modal">
+            <h2>Game Over!</h2>
+            <p>Time: <span id="finalTime">0</span> seconds</p>
+            <button id="restartButton">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
